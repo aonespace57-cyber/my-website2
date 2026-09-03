@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A One Space</title>
+  <meta name="description" content="정교한 공간 연출과 시공 디테일을 소개하는 A One Space의 브랜드 홈페이지입니다.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="top"></div>
+
+  <header class="site-header">
+    <a href="#top" class="logo-wrap" aria-label="A One Space 홈으로 이동">
+      <img src="images/logo.png" class="logo-img" alt="A One Space 로고">
+      <span class="logo-text">A One Space</span>
+    </a>
+    <a href="#contact" class="header-contact-link">문의</a>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Designing spaces with calm precision</p>
+        <h1>A One Sapce</h1>
+        <p class="hero-text">
+          A One Space는 전시공간을 위한 맞춤 설계와 시공을 통해<br>
+          시선이 머무는 공간을 디자인합니다.
+        </p>
+        <div class="hero-actions">
+          <a href="#cases" class="button button-primary">시공사례 보기</a>
+          <a href="#contact" class="button button-secondary">상담 문의</a>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal">
+        <div class="device-frame">
+          <img src="images/최상단.jpg" alt="A One Space 대표 공간 이미지">
+        </div>
+        <div class="floating-card">
+          <strong>Premium Finish</strong>
+          <span>설계부터 시공 디테일까지 한 흐름으로 관리합니다.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="highlight-showcase" id="highlights">
+      <div class="showcase-head reveal">
+        <p class="eyebrow">Featured projects</p>
+        <h2>효율적이고 경제적인<br>디자인을 제공합니다.</h2>
+      </div>
+
+      <div class="showcase-grid">
+        <article class="feature-card feature-card-large reveal">
+          <div class="feature-copy">
+            <p class="feature-label">Signature Residence</p>
+            <h3>설계, 시공, 마감까지<br>팀으로 이어지는 전시 작업</h3>
+            <p>
+              프로젝트 규모와 관계없이 한결같은 완성도를 목표로 합니다.<br>
+              고객은 핵심 의사결정에 집중하고, 실행은 저희가 책임집니다.
+            </p>
+          </div>
+          <img src="images/img1.jpg" alt="A One Space 대표 프로젝트 이미지">
+        </article>
+
+        <article class="feature-card feature-card-large color-gallery-card construction-case-card reveal" id="cases">
+          <div class="feature-copy">
+            <p class="feature-label">Construction Cases</p>
+            <div class="case-tabs" role="tablist" aria-label="시공 방식 선택">
+              <button class="case-tab" type="button" role="tab" aria-selected="false" data-case-tab="block">블록</button>
+              <button class="case-tab" type="button" role="tab" aria-selected="false" data-case-tab="woodwork">목공</button>
+              <button class="case-tab" type="button" role="tab" aria-selected="false" data-case-tab="maxima">맥시마</button>
+              <button class="case-tab" type="button" role="tab" aria-selected="false" data-case-tab="zero-truss">제로트러스</button>
+            </div>
+            <h3>시공사례</h3>
+          </div>
+
+          <div class="case-gallery is-active" data-case-panel="all" role="tabpanel">
+            <div class="color-gallery" aria-label="시공 사례 이미지 목록">
+              <div class="color-tile image-tile"><img src="images/시공사례/트러스플래너존.jpg" alt="트러스플래너존 시공 사례 이미지"></div>
+              <div class="color-tile image-tile"><img src="images/시공사례/인덱스홀딩.jpg" alt="인덱스홀딩 시공 사례 이미지"></div>
+              <div class="color-tile image-tile"><img src="images/시공사례/파이로엔지니어링.jpg" alt="파이로엔지니어링 시공 사례 이미지"></div>
+              <div class="color-tile image-tile"><img src="images/시공사례/송도.jpg" alt="송도 시공 사례 이미지"></div>
+              <div class="color-tile image-tile"><img src="images/시공사례/프랜차이즈창업.jpg" alt="프랜차이즈창업 시공 사례 이미지"></div>
+              <div class="color-tile image-tile"><img src="images/시공사례/폼보드유포벽체.jpg" alt="폼보드유포벽체 시공 사례 이미지"></div>
+            </div>
+          </div>
+
+          <div class="case-gallery" data-case-panel="block" role="tabpanel" hidden>
+            <div class="color-gallery case-placeholder-gallery" aria-label="블록 시공 사례 이미지 목록">
+              <div class="color-tile image-tile"><img src="images/시공사례/블록/대아펌프.jpg" alt="대아펌프 블록 시공 사례 이미지"></div>
+              <div class="color-tile image-tile"><img src="images/시공사례/블록/얌샘.jpg" alt="얌샘 블록 시공 사례 이미지"></div>
+              <div class="color-tile image-tile"><img src="images/시공사례/블록/코사운드.jpg" alt="코사운드 블록 시공 사례 이미지"></div>
+            </div>
+          </div>
+
+          <div class="case-gallery" data-case-panel="woodwork" role="tabpanel" hidden>
+            <div class="color-gallery case-placeholder-gallery" aria-label="목공 시공 사례 이미지 목록">
+              <div class="color-tile image-tile"><img src="images/시공사례/목공/아전펌프.jpg" alt="아전펌프 목공 시공 사례 이미지"></div>
+              <div class="color-tile image-tile"><img src="images/시공사례/목공/파이로엔지니어링.jpg" alt="파이로엔지니어링 목공 시공 사례 이미지"></div>
+              <div class="color-tile image-tile"><img src="images/시공사례/목공/인덱스.jpg" alt="인덱스 목공 시공 사례 이미지"></div>
+              <div class="color-tile image-tile"><img src="images/시공사례/목공/한방유비스.jpg" alt="한방유비스 목공 시공 사례 이미지"></div>
+            </div>
+          </div>
+
+          <div class="case-gallery" data-case-panel="maxima" role="tabpanel" hidden>
+            <div class="color-gallery case-placeholder-gallery" aria-label="맥시마 시공 사례 이미지 목록">
+              <div class="color-tile image-tile"><img src="images/시공사례/맥시마/맥시마 국제식품전.JPG" alt="맥시마 국제식품전 시공 사례 이미지"></div>
+              <div class="color-tile image-tile"><img src="images/시공사례/맥시마/맥시마라이팅 20230516_193051.jpg" alt="맥시마 라이팅 시공 사례 이미지"></div>
+            </div>
+          </div>
+
+          <div class="case-gallery" data-case-panel="zero-truss" role="tabpanel" hidden>
+            <div class="color-gallery case-placeholder-gallery" aria-label="제로트러스 시공 사례 이미지 목록">
+              <div class="color-tile image-tile"><img src="images/시공사례/제로트러스/트러스플래너존 20210226_202205.jpg" alt="트러스 플래너존 시공 사례 이미지"></div>
+              <div class="color-tile image-tile"><img src="images/시공사례/제로트러스/웨딩박람회 전경 20220709_130716.jpg" alt="웨딩박람회 전경 시공 사례 이미지"></div>
+              <div class="color-tile image-tile"><img src="images/시공사례/제로트러스/에이엠펫.jpg" alt="에이엠펫 제로트러스 시공 사례 이미지"></div>
+              <div class="color-tile image-tile"><img src="images/시공사례/제로트러스/20260717_194215.jpg" alt="제로트러스 시공 사례 이미지"></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="feature-card feature-card-large color-gallery-card model-gallery-card reveal">
+          <div class="feature-copy">
+            <p class="feature-label">Model Proposal</p>
+            <h3>기본부스모델</h3>
+          </div>
+          <div class="color-gallery" aria-label="모델 시안 이미지 목록">
+            <div class="color-tile image-tile">
+              <img src="images/기본부스모델/기본부스-1.jpg" alt="모델 시안 예시 이미지">
+              <span class="model-caption">모델1</span>
+            </div>
+            <div class="color-tile image-tile">
+              <img src="images/기본부스모델/기본부스-2.jpg" alt="모델 시안 예시 이미지">
+              <span class="model-caption">모델2</span>
+            </div>
+             <div class="color-tile image-tile">
+                <img src="images/기본부스모델/기본부스-3.jpg" alt="모델 시안 예시 이미지">
+                <span class="model-caption">모델3</span>
+            </div>
+        </article>
+
+        <article class="feature-card feature-card-large color-gallery-card model-gallery-card model-placeholder-card reveal">
+          <div class="feature-copy">
+            <p class="feature-label">Model Proposal</p>
+            <h3>블록모델</h3>
+          </div>
+          <div class="color-gallery" aria-label="블록모델 이미지 목록">
+            <div class="color-tile image-tile"><img src="images/블록/대아.png" alt="대아 블록모델 이미지"></div>
+            <div class="color-tile image-tile"><img src="images/블록/더픽트.jpg" alt="더픽트 블록모델 이미지"></div>
+            <div class="color-tile image-tile"><img src="images/블록/샘아쿠아.jpg" alt="샘아쿠아 블록모델 이미지"></div>
+            <div class="color-tile image-tile"><img src="images/블록/소다미디어.jpg" alt="소다미디어 블록모델 이미지"></div>
+            <div class="color-tile image-tile"><img src="images/블록/드림오션.jpg" alt="드림오션 블록모델 이미지"></div>
+            <div class="color-tile image-tile"><img src="images/블록/소다.jpg" alt="소다 블록모델 이미지"></div>
+          </div>
+        </article>
+
+        <article class="feature-card feature-card-large color-gallery-card model-gallery-card model-placeholder-card reveal">
+          <div class="feature-copy">
+            <p class="feature-label">Model Proposal</p>
+            <h3>목공모델</h3>
+          </div>
+          <div class="color-gallery woodwork-model-gallery" aria-label="목공모델 이미지 목록">
+            <div class="color-tile image-tile"><img src="images/목공/아전.png" alt="아전 목공모델 이미지"></div>
+            <div class="color-tile image-tile"><img src="images/목공/인덱스.png" alt="인덱스 목공모델 이미지"></div>
+            <div class="color-tile image-tile"><img src="images/목공/한방유비스.png" alt="한방유비스 목공모델 이미지"></div>
+          </div>
+        </article>
+
+        <article class="feature-card feature-card-large color-gallery-card model-gallery-card model-placeholder-card reveal">
+          <div class="feature-copy">
+            <p class="feature-label">Model Proposal</p>
+            <h3>맥시마모델</h3>
+          </div>
+          <div class="color-gallery" aria-label="맥시마모델 이미지 목록">
+            <div class="color-tile image-tile"><img src="images/맥시마/맥시마부스.jpg" alt="맥시마 모델 이미지"></div>
+            <div class="color-tile image-tile"><img src="images/맥시마/춘천.png" alt="춘천 맥시마 모델 이미지"></div>
+            <div class="color-tile image-tile"><img src="images/맥시마/소방전.png" alt="소방전 맥시마 모델 이미지"></div>
+          </div>
+        </article>
+
+        <article class="feature-card feature-card-large color-gallery-card model-gallery-card model-placeholder-card reveal">
+          <div class="feature-copy">
+            <p class="feature-label">Model Proposal</p>
+            <h3>제로트러스모델</h3>
+          </div>
+          <div class="color-gallery zero-truss-model-gallery" aria-label="제로트러스모델 이미지 목록">
+            <div class="color-tile image-tile"><img src="images/제로트러스/트러스.png" alt="트러스 제로트러스모델 이미지"></div>
+            <div class="color-tile image-tile"><img src="images/제로트러스/진록박람회.png" alt="진록박람회 제로트러스모델 이미지"></div>
+            <div class="color-tile image-tile"><img src="images/제로트러스/유피코리아.png" alt="유피코리아 제로트러스모델 이미지"></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="contact-card reveal">
+        <p class="eyebrow">Contact</p>
+        <h2>프로젝트 문의</h2>
+        <p>필요한 내용을 남겨주시면 확인 후 연락드릴 수 있도록 문의 폼을 준비했습니다.</p>
+        <form class="contact-form" action="https://formsubmit.co/aonespace@naver.com" method="POST">
+          <input type="hidden" name="_subject" value="A One Space 홈페이지 문의">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" class="hidden-field" tabindex="-1" autocomplete="off">
+
+          <label class="form-field">
+            <span>성함</span>
+            <input type="text" name="name" placeholder="성함을 입력해 주세요" required>
+          </label>
+
+          <label class="form-field">
+            <span>이메일</span>
+            <input type="email" name="email" placeholder="답변받을 이메일을 입력해 주세요" required>
+          </label>
+
+          <label class="form-field">
+            <span>문의 내용</span>
+            <textarea name="message" rows="6" required>
+행 사 명   : 
+장      소  : 
+설 치 일   : 
+철 거 일   : 
+모델타입  : 
+설치수량  : 
+ </textarea>
+          </label>
+
+          <button type="submit" class="button button-primary submit-button">문의 남기기</button>
+          <p class="form-status">제출 후 메일 전송이 진행됩니다.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>상호 : A One Space ㅣ 대표 : 문경봉 ㅣ 사업자번호 : 724-86-03825</p>
+    <p>주소 : 서울특별시 중랑구 공릉로2나길 34-3, 1층</p>
+    <p>E-mail : aonespace@naver.com</p>
+  </footer>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-nav lightbox-prev" type="button" aria-label="이전 이미지">‹</button>
+    <button class="lightbox-close" type="button" aria-label="확대 이미지 닫기">×</button>
+    <img class="lightbox-image" id="lightbox-image" alt="">
+    <button class="lightbox-nav lightbox-next" type="button" aria-label="다음 이미지">›</button>
+  </div>
+
+  <div class="case-viewer" id="case-viewer" aria-hidden="true">
+    <div class="case-viewer-panel" role="dialog" aria-modal="true" aria-labelledby="case-viewer-title">
+      <button class="case-viewer-close" type="button" aria-label="시공 방식 갤러리 닫기">×</button>
+      <p class="case-viewer-label" id="case-viewer-title"></p>
+      <div class="case-viewer-content">
+        <img class="case-viewer-image" id="case-viewer-image" alt="" hidden>
+        <div class="case-viewer-placeholder" id="case-viewer-placeholder"></div>
+      </div>
+      <div class="case-viewer-footer">
+        <button class="case-viewer-nav" id="case-viewer-prev" type="button" aria-label="이전 사진">이전</button>
+        <span class="case-viewer-count" id="case-viewer-count"></span>
+        <button class="case-viewer-nav" id="case-viewer-next" type="button" aria-label="다음 사진">다음</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

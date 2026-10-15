@@ -1,0 +1,34 @@
+{
+  "photos": [
+    {
+      "image": "/images/시공사례/트러스플래너존.jpg",
+      "alt": "트러스플래너존 시공 사례 이미지",
+      "caption": ""
+    },
+    {
+      "image": "/images/시공사례/인덱스홀딩.jpg",
+      "alt": "인덱스홀딩 시공 사례 이미지",
+      "caption": ""
+    },
+    {
+      "image": "/images/시공사례/파이로엔지니어링.jpg",
+      "alt": "파이로엔지니어링 시공 사례 이미지",
+      "caption": ""
+    },
+    {
+      "image": "/images/시공사례/송도.jpg",
+      "alt": "송도 시공 사례 이미지",
+      "caption": ""
+    },
+    {
+      "image": "/images/시공사례/프랜차이즈창업.jpg",
+      "alt": "프랜차이즈창업 시공 사례 이미지",
+      "caption": ""
+    },
+    {
+      "image": "/images/시공사례/폼보드유포벽체.jpg",
+      "alt": "폼보드유포벽체 시공 사례 이미지",
+      "caption": ""
+    }
+  ]
+}

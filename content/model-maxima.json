@@ -1,0 +1,19 @@
+{
+  "photos": [
+    {
+      "image": "/images/맥시마/맥시마부스.jpg",
+      "alt": "맥시마 모델 이미지",
+      "caption": ""
+    },
+    {
+      "image": "/images/맥시마/춘천.png",
+      "alt": "춘천 맥시마 모델 이미지",
+      "caption": ""
+    },
+    {
+      "image": "/images/맥시마/소방전.png",
+      "alt": "소방전 맥시마 모델 이미지",
+      "caption": ""
+    }
+  ]
+}

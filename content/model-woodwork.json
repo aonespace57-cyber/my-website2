@@ -1,0 +1,19 @@
+{
+  "photos": [
+    {
+      "image": "/images/목공/아전.png",
+      "alt": "아전 목공모델 이미지",
+      "caption": ""
+    },
+    {
+      "image": "/images/목공/인덱스.png",
+      "alt": "인덱스 목공모델 이미지",
+      "caption": ""
+    },
+    {
+      "image": "/images/목공/한방유비스.png",
+      "alt": "한방유비스 목공모델 이미지",
+      "caption": ""
+    }
+  ]
+}

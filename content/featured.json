@@ -1,0 +1,10 @@
+{
+  "hero": {
+    "image": "/images/최상단.jpg",
+    "alt": "A One Space 대표 공간 이미지"
+  },
+  "signature": {
+    "image": "/images/img1.jpg",
+    "alt": "A One Space 대표 프로젝트 이미지"
+  }
+}

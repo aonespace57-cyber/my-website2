@@ -1,0 +1,297 @@
+media:
+  input: images
+  output: /images
+  extensions: [jpg, jpeg, png, webp, gif]
+  rename: random
+
+content:
+  - name: featured
+    label: 대표 사진
+    type: file
+    path: content/featured.json
+    format: json
+    fields:
+      - name: hero
+        label: 첫 화면 오른쪽 사진
+        type: object
+        fields:
+          - name: image
+            label: 사진 선택 또는 업로드
+            type: image
+            required: true
+          - name: alt
+            label: 사진 설명
+            type: string
+            required: true
+      - name: signature
+        label: 설계·시공 소개 사진
+        type: object
+        fields:
+          - name: image
+            label: 사진 선택 또는 업로드
+            type: image
+            required: true
+          - name: alt
+            label: 사진 설명
+            type: string
+            required: true
+  - name: case-all
+    label: 시공사례 대표 사진
+    type: file
+    path: content/case-all.json
+    format: json
+    fields:
+      - name: photos
+        label: 사진 목록
+        description: 항목을 추가하거나 삭제하고 드래그로 순서를 바꾼 뒤 저장하세요. 사진 개수에는 제한이 없습니다.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{alt}"
+        fields:
+          - name: image
+            label: 사진 선택 또는 업로드
+            type: image
+            required: true
+          - name: alt
+            label: 사진 설명
+            type: string
+            required: true
+          - name: caption
+            label: 사진 위 이름표 (선택)
+            type: string
+  - name: case-block
+    label: 시공사례 · 블록
+    type: file
+    path: content/case-block.json
+    format: json
+    fields:
+      - name: photos
+        label: 사진 목록
+        description: 항목을 추가하거나 삭제하고 드래그로 순서를 바꾼 뒤 저장하세요. 사진 개수에는 제한이 없습니다.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{alt}"
+        fields:
+          - name: image
+            label: 사진 선택 또는 업로드
+            type: image
+            required: true
+          - name: alt
+            label: 사진 설명
+            type: string
+            required: true
+          - name: caption
+            label: 사진 위 이름표 (선택)
+            type: string
+  - name: case-woodwork
+    label: 시공사례 · 목공
+    type: file
+    path: content/case-woodwork.json
+    format: json
+    fields:
+      - name: photos
+        label: 사진 목록
+        description: 항목을 추가하거나 삭제하고 드래그로 순서를 바꾼 뒤 저장하세요. 사진 개수에는 제한이 없습니다.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{alt}"
+        fields:
+          - name: image
+            label: 사진 선택 또는 업로드
+            type: image
+            required: true
+          - name: alt
+            label: 사진 설명
+            type: string
+            required: true
+          - name: caption
+            label: 사진 위 이름표 (선택)
+            type: string
+  - name: case-maxima
+    label: 시공사례 · 맥시마
+    type: file
+    path: content/case-maxima.json
+    format: json
+    fields:
+      - name: photos
+        label: 사진 목록
+        description: 항목을 추가하거나 삭제하고 드래그로 순서를 바꾼 뒤 저장하세요. 사진 개수에는 제한이 없습니다.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{alt}"
+        fields:
+          - name: image
+            label: 사진 선택 또는 업로드
+            type: image
+            required: true
+          - name: alt
+            label: 사진 설명
+            type: string
+            required: true
+          - name: caption
+            label: 사진 위 이름표 (선택)
+            type: string
+  - name: case-zero-truss
+    label: 시공사례 · 제로트러스
+    type: file
+    path: content/case-zero-truss.json
+    format: json
+    fields:
+      - name: photos
+        label: 사진 목록
+        description: 항목을 추가하거나 삭제하고 드래그로 순서를 바꾼 뒤 저장하세요. 사진 개수에는 제한이 없습니다.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{alt}"
+        fields:
+          - name: image
+            label: 사진 선택 또는 업로드
+            type: image
+            required: true
+          - name: alt
+            label: 사진 설명
+            type: string
+            required: true
+          - name: caption
+            label: 사진 위 이름표 (선택)
+            type: string
+  - name: model-basic
+    label: 기본부스모델
+    type: file
+    path: content/model-basic.json
+    format: json
+    fields:
+      - name: photos
+        label: 사진 목록
+        description: 항목을 추가하거나 삭제하고 드래그로 순서를 바꾼 뒤 저장하세요. 사진 개수에는 제한이 없습니다.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{alt}"
+        fields:
+          - name: image
+            label: 사진 선택 또는 업로드
+            type: image
+            required: true
+          - name: alt
+            label: 사진 설명
+            type: string
+            required: true
+          - name: caption
+            label: 사진 위 이름표 (선택)
+            type: string
+  - name: model-block
+    label: 블록모델
+    type: file
+    path: content/model-block.json
+    format: json
+    fields:
+      - name: photos
+        label: 사진 목록
+        description: 항목을 추가하거나 삭제하고 드래그로 순서를 바꾼 뒤 저장하세요. 사진 개수에는 제한이 없습니다.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{alt}"
+        fields:
+          - name: image
+            label: 사진 선택 또는 업로드
+            type: image
+            required: true
+          - name: alt
+            label: 사진 설명
+            type: string
+            required: true
+          - name: caption
+            label: 사진 위 이름표 (선택)
+            type: string
+  - name: model-woodwork
+    label: 목공모델
+    type: file
+    path: content/model-woodwork.json
+    format: json
+    fields:
+      - name: photos
+        label: 사진 목록
+        description: 항목을 추가하거나 삭제하고 드래그로 순서를 바꾼 뒤 저장하세요. 사진 개수에는 제한이 없습니다.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{alt}"
+        fields:
+          - name: image
+            label: 사진 선택 또는 업로드
+            type: image
+            required: true
+          - name: alt
+            label: 사진 설명
+            type: string
+            required: true
+          - name: caption
+            label: 사진 위 이름표 (선택)
+            type: string
+  - name: model-maxima
+    label: 맥시마모델
+    type: file
+    path: content/model-maxima.json
+    format: json
+    fields:
+      - name: photos
+        label: 사진 목록
+        description: 항목을 추가하거나 삭제하고 드래그로 순서를 바꾼 뒤 저장하세요. 사진 개수에는 제한이 없습니다.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{alt}"
+        fields:
+          - name: image
+            label: 사진 선택 또는 업로드
+            type: image
+            required: true
+          - name: alt
+            label: 사진 설명
+            type: string
+            required: true
+          - name: caption
+            label: 사진 위 이름표 (선택)
+            type: string
+  - name: model-zero-truss
+    label: 제로트러스모델
+    type: file
+    path: content/model-zero-truss.json
+    format: json
+    fields:
+      - name: photos
+        label: 사진 목록
+        description: 항목을 추가하거나 삭제하고 드래그로 순서를 바꾼 뒤 저장하세요. 사진 개수에는 제한이 없습니다.
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{alt}"
+        fields:
+          - name: image
+            label: 사진 선택 또는 업로드
+            type: image
+            required: true
+          - name: alt
+            label: 사진 설명
+            type: string
+            required: true
+          - name: caption
+            label: 사진 위 이름표 (선택)
+            type: string

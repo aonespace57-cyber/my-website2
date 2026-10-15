@@ -1,0 +1,34 @@
+{
+  "photos": [
+    {
+      "image": "/images/블록/대아.png",
+      "alt": "대아 블록모델 이미지",
+      "caption": ""
+    },
+    {
+      "image": "/images/블록/더픽트.jpg",
+      "alt": "더픽트 블록모델 이미지",
+      "caption": ""
+    },
+    {
+      "image": "/images/블록/샘아쿠아.jpg",
+      "alt": "샘아쿠아 블록모델 이미지",
+      "caption": ""
+    },
+    {
+      "image": "/images/블록/소다미디어.jpg",
+      "alt": "소다미디어 블록모델 이미지",
+      "caption": ""
+    },
+    {
+      "image": "/images/블록/드림오션.jpg",
+      "alt": "드림오션 블록모델 이미지",
+      "caption": ""
+    },
+    {
+      "image": "/images/블록/소다.jpg",
+      "alt": "소다 블록모델 이미지",
+      "caption": ""
+    }
+  ]
+}

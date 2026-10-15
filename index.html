@@ -62,7 +62,7 @@
 
       <div class="hero-visual reveal">
         <div class="device-frame">
-          <img src="images/최상단.jpg" alt="A One Space 대표 공간 이미지">
+          <img data-featured="hero" src="images/최상단.jpg" alt="A One Space 대표 공간 이미지">
         </div>
         <div class="floating-card">
           <strong>Premium Finish</strong>
@@ -87,7 +87,7 @@
               고객은 핵심 의사결정에 집중하고, 실행은 저희가 책임집니다.
             </p>
           </div>
-          <img src="images/img1.jpg" alt="A One Space 대표 프로젝트 이미지">
+          <img data-featured="signature" src="images/img1.jpg" alt="A One Space 대표 프로젝트 이미지">
         </article>
 
         <article class="feature-card feature-card-large color-gallery-card construction-case-card reveal" id="cases">
@@ -104,7 +104,7 @@
           </div>
 
           <div class="case-gallery is-active" data-case-panel="all" role="tabpanel">
-            <div class="color-gallery" aria-label="시공 사례 이미지 목록">
+            <div class="color-gallery" data-photos="case-all" aria-label="시공 사례 이미지 목록">
               <div class="color-tile image-tile"><img src="images/시공사례/트러스플래너존.jpg" alt="트러스플래너존 시공 사례 이미지"></div>
               <div class="color-tile image-tile"><img src="images/시공사례/인덱스홀딩.jpg" alt="인덱스홀딩 시공 사례 이미지"></div>
               <div class="color-tile image-tile"><img src="images/시공사례/파이로엔지니어링.jpg" alt="파이로엔지니어링 시공 사례 이미지"></div>
@@ -115,7 +115,7 @@
           </div>
 
           <div class="case-gallery" data-case-panel="block" role="tabpanel" hidden>
-            <div class="color-gallery case-placeholder-gallery" aria-label="블록 시공 사례 이미지 목록">
+            <div class="color-gallery case-placeholder-gallery" data-photos="case-block" aria-label="블록 시공 사례 이미지 목록">
               <div class="color-tile image-tile"><img src="images/시공사례/블록/대아펌프.jpg" alt="대아펌프 블록 시공 사례 이미지"></div>
               <div class="color-tile image-tile"><img src="images/시공사례/블록/얌샘.jpg" alt="얌샘 블록 시공 사례 이미지"></div>
               <div class="color-tile image-tile"><img src="images/시공사례/블록/코사운드.jpg" alt="코사운드 블록 시공 사례 이미지"></div>
@@ -123,7 +123,7 @@
           </div>
 
           <div class="case-gallery" data-case-panel="woodwork" role="tabpanel" hidden>
-            <div class="color-gallery case-placeholder-gallery" aria-label="목공 시공 사례 이미지 목록">
+            <div class="color-gallery case-placeholder-gallery" data-photos="case-woodwork" aria-label="목공 시공 사례 이미지 목록">
               <div class="color-tile image-tile"><img src="images/시공사례/목공/아전펌프.jpg" alt="아전펌프 목공 시공 사례 이미지"></div>
               <div class="color-tile image-tile"><img src="images/시공사례/목공/파이로엔지니어링.jpg" alt="파이로엔지니어링 목공 시공 사례 이미지"></div>
               <div class="color-tile image-tile"><img src="images/시공사례/목공/인덱스.jpg" alt="인덱스 목공 시공 사례 이미지"></div>
@@ -132,14 +132,14 @@
           </div>
 
           <div class="case-gallery" data-case-panel="maxima" role="tabpanel" hidden>
-            <div class="color-gallery case-placeholder-gallery" aria-label="맥시마 시공 사례 이미지 목록">
+            <div class="color-gallery case-placeholder-gallery" data-photos="case-maxima" aria-label="맥시마 시공 사례 이미지 목록">
               <div class="color-tile image-tile"><img src="images/시공사례/맥시마/맥시마 국제식품전.JPG" alt="맥시마 국제식품전 시공 사례 이미지"></div>
               <div class="color-tile image-tile"><img src="images/시공사례/맥시마/맥시마라이팅 20230516_193051.jpg" alt="맥시마 라이팅 시공 사례 이미지"></div>
             </div>
           </div>
 
           <div class="case-gallery" data-case-panel="zero-truss" role="tabpanel" hidden>
-            <div class="color-gallery case-placeholder-gallery" aria-label="제로트러스 시공 사례 이미지 목록">
+            <div class="color-gallery case-placeholder-gallery" data-photos="case-zero-truss" aria-label="제로트러스 시공 사례 이미지 목록">
               <div class="color-tile image-tile"><img src="images/시공사례/제로트러스/트러스플래너존 20210226_202205.jpg" alt="트러스 플래너존 시공 사례 이미지"></div>
               <div class="color-tile image-tile"><img src="images/시공사례/제로트러스/웨딩박람회 전경 20220709_130716.jpg" alt="웨딩박람회 전경 시공 사례 이미지"></div>
               <div class="color-tile image-tile"><img src="images/시공사례/제로트러스/에이엠펫.jpg" alt="에이엠펫 제로트러스 시공 사례 이미지"></div>
@@ -153,7 +153,7 @@
             <p class="feature-label">Model Proposal</p>
             <h3>기본부스모델</h3>
           </div>
-          <div class="color-gallery" aria-label="모델 시안 이미지 목록">
+          <div class="color-gallery" data-photos="model-basic" aria-label="모델 시안 이미지 목록">
             <div class="color-tile image-tile">
               <img src="images/기본부스모델/기본부스-1.jpg" alt="모델 시안 예시 이미지">
               <span class="model-caption">모델1</span>
@@ -166,6 +166,7 @@
                 <img src="images/기본부스모델/기본부스-3.jpg" alt="모델 시안 예시 이미지">
                 <span class="model-caption">모델3</span>
             </div>
+          </div>
         </article>
 
         <article class="feature-card feature-card-large color-gallery-card model-gallery-card model-placeholder-card reveal">
@@ -173,7 +174,7 @@
             <p class="feature-label">Model Proposal</p>
             <h3>블록모델</h3>
           </div>
-          <div class="color-gallery" aria-label="블록모델 이미지 목록">
+          <div class="color-gallery" data-photos="model-block" aria-label="블록모델 이미지 목록">
             <div class="color-tile image-tile"><img src="images/블록/대아.png" alt="대아 블록모델 이미지"></div>
             <div class="color-tile image-tile"><img src="images/블록/더픽트.jpg" alt="더픽트 블록모델 이미지"></div>
             <div class="color-tile image-tile"><img src="images/블록/샘아쿠아.jpg" alt="샘아쿠아 블록모델 이미지"></div>
@@ -188,7 +189,7 @@
             <p class="feature-label">Model Proposal</p>
             <h3>목공모델</h3>
           </div>
-          <div class="color-gallery woodwork-model-gallery" aria-label="목공모델 이미지 목록">
+          <div class="color-gallery woodwork-model-gallery" data-photos="model-woodwork" aria-label="목공모델 이미지 목록">
             <div class="color-tile image-tile"><img src="images/목공/아전.png" alt="아전 목공모델 이미지"></div>
             <div class="color-tile image-tile"><img src="images/목공/인덱스.png" alt="인덱스 목공모델 이미지"></div>
             <div class="color-tile image-tile"><img src="images/목공/한방유비스.png" alt="한방유비스 목공모델 이미지"></div>
@@ -200,7 +201,7 @@
             <p class="feature-label">Model Proposal</p>
             <h3>맥시마모델</h3>
           </div>
-          <div class="color-gallery" aria-label="맥시마모델 이미지 목록">
+          <div class="color-gallery" data-photos="model-maxima" aria-label="맥시마모델 이미지 목록">
             <div class="color-tile image-tile"><img src="images/맥시마/맥시마부스.jpg" alt="맥시마 모델 이미지"></div>
             <div class="color-tile image-tile"><img src="images/맥시마/춘천.png" alt="춘천 맥시마 모델 이미지"></div>
             <div class="color-tile image-tile"><img src="images/맥시마/소방전.png" alt="소방전 맥시마 모델 이미지"></div>
@@ -212,7 +213,7 @@
             <p class="feature-label">Model Proposal</p>
             <h3>제로트러스모델</h3>
           </div>
-          <div class="color-gallery zero-truss-model-gallery" aria-label="제로트러스모델 이미지 목록">
+          <div class="color-gallery zero-truss-model-gallery" data-photos="model-zero-truss" aria-label="제로트러스모델 이미지 목록">
             <div class="color-tile image-tile"><img src="images/제로트러스/트러스.png" alt="트러스 제로트러스모델 이미지"></div>
             <div class="color-tile image-tile"><img src="images/제로트러스/진록박람회.png" alt="진록박람회 제로트러스모델 이미지"></div>
             <div class="color-tile image-tile"><img src="images/제로트러스/유피코리아.png" alt="유피코리아 제로트러스모델 이미지"></div>
@@ -263,6 +264,7 @@
   <footer class="site-footer">
     <p>상호 : A One Space ㅣ 대표 : 문경봉 ㅣ 사업자번호 : 724-86-03825</p>
     <p>E-mail : aonespace@naver.com</p>
+    <p><a href="admin/">사진 관리</a></p>
   </footer>
 
   <div class="lightbox" id="lightbox" aria-hidden="true">
@@ -288,6 +290,7 @@
     </div>
   </div>
 
+  <script src="js/managed-photos.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>

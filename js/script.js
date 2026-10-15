@@ -1,5 +1,4 @@
 const revealItems = document.querySelectorAll(".reveal");
-const zoomableImages = document.querySelectorAll(".image-tile img");
 const lightbox = document.getElementById("lightbox");
 const lightboxImage = document.getElementById("lightbox-image");
 const lightboxClose = document.querySelector(".lightbox-close");
@@ -96,8 +95,11 @@ const showNextImage = () => {
   updateLightboxImage();
 };
 
-zoomableImages.forEach((image) => {
-  image.addEventListener("click", () => openLightbox(image));
+document.addEventListener("click", (event) => {
+  const image = event.target.closest(".image-tile img");
+  if (image) {
+    openLightbox(image);
+  }
 });
 
 const updateCaseViewer = () => {
@@ -119,6 +121,8 @@ const updateCaseViewer = () => {
   }
 
   caseViewerCount.textContent = `${activeCaseIndex + 1} / ${activeCaseItems.length}`;
+  caseViewerPrev.disabled = activeCaseItems.length <= 1;
+  caseViewerNext.disabled = activeCaseItems.length <= 1;
 };
 
 const closeCaseViewer = () => {
@@ -176,6 +180,13 @@ caseViewer?.addEventListener("click", (event) => {
 });
 
 const contactForm = document.querySelector(".contact-form");
+
+document.addEventListener("managedphotosupdated", () => {
+  closeLightbox();
+  closeCaseViewer();
+});
+
+window.loadManagedPhotos();
 
 contactForm?.addEventListener("submit", (event) => {
   const shouldSubmit = window.confirm("문의 내용을 전송할까요?");

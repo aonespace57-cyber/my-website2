@@ -661,6 +661,27 @@ main {
   margin: 6px 0;
 }
 
+.photo-admin-link {
+  position: fixed;
+  left: max(8px, env(safe-area-inset-left));
+  bottom: max(8px, env(safe-area-inset-bottom));
+  z-index: 100;
+  padding: 8px 10px;
+  border: 1px solid #d8dce2;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #555d68;
+  font-size: 12px;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.photo-admin-link:hover,
+.photo-admin-link:focus-visible {
+  color: #005bb5;
+  border-color: #005bb5;
+}
+
 .image-tile {
   position: relative;
   cursor: zoom-in;

@@ -189,7 +189,7 @@ document.addEventListener("managedphotosupdated", () => {
 window.loadManagedPhotos();
 
 contactForm?.addEventListener("submit", (event) => {
-  const shouldSubmit = window.confirm("문의 내용을 전송할까요?");
+  const shouldSubmit = window.confirm("전송하시겠습니까?");
 
   if (!shouldSubmit) {
     event.preventDefault();

@@ -188,11 +188,53 @@ document.addEventListener("managedphotosupdated", () => {
 
 window.loadManagedPhotos();
 
-contactForm?.addEventListener("submit", (event) => {
-  const shouldSubmit = window.confirm("전송하시겠습니까?");
+let inquirySending = false;
 
-  if (!shouldSubmit) {
-    event.preventDefault();
+contactForm?.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  if (inquirySending || !window.confirm("전송하시겠습니까?")) return;
+
+  const button = contactForm.querySelector(".submit-button");
+  const status = contactForm.querySelector(".form-status");
+  const originalLabel = button.textContent;
+  const payload = Object.fromEntries(new FormData(contactForm));
+  const endpoint = new URL(contactForm.action);
+  endpoint.pathname = `/ajax${endpoint.pathname}`;
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 30000);
+
+  inquirySending = true;
+  button.disabled = true;
+  button.textContent = "전송 중…";
+  contactForm.setAttribute("aria-busy", "true");
+  status.textContent = "문의 내용을 전송하고 있습니다.";
+  status.dataset.state = "sending";
+
+  try {
+    const response = await fetch(endpoint.href, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(payload),
+      signal: controller.signal,
+    });
+    const result = await response.json();
+    if (!response.ok || !(result.success === true || result.success === "true")) {
+      throw new Error("Inquiry was not accepted");
+    }
+    status.textContent = "문의가 접수되었습니다. 확인 후 연락드리겠습니다.";
+    status.dataset.state = "success";
+    contactForm.reset();
+  } catch (error) {
+    status.textContent = error.name === "AbortError"
+      ? "전송 결과를 확인하지 못했습니다. 잠시 후 다시 시도하거나 aonespace@naver.com으로 연락해 주세요."
+      : "전송하지 못했습니다. 입력 내용은 유지됩니다. 잠시 후 다시 시도하거나 aonespace@naver.com으로 연락해 주세요.";
+    status.dataset.state = "error";
+  } finally {
+    clearTimeout(timeout);
+    inquirySending = false;
+    button.disabled = false;
+    button.textContent = originalLabel;
+    contactForm.removeAttribute("aria-busy");
   }
 });
 

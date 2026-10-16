@@ -642,6 +642,15 @@ main {
   margin-top: 10px;
 }
 
+.submit-button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.form-status[data-state="error"] {
+  color: #b42318;
+}
+
 .form-status {
   min-height: 24px;
   margin-top: 16px;

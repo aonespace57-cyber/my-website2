@@ -97,8 +97,45 @@ const server = http.createServer((req, res) => {
     await page.locator('.submit-button').click();
     assert.ok(confirmed);
     assert.equal(new URL(page.url()).host, new URL(base).host);
+
+    let submissionCount = 0;
+    let submissionResult = 'success';
+    await page.route('https://formsubmit.co/**', async route => {
+      submissionCount++;
+      assert.equal(route.request().url(), 'https://formsubmit.co/ajax/aonespace@naver.com');
+      assert.equal(route.request().postDataJSON()._captcha, 'false');
+      await new Promise(resolve => setTimeout(resolve, 200));
+      if (submissionResult === 'network') return route.abort();
+      return route.fulfill({ json: { success: submissionResult === 'success' ? 'true' : 'false' } });
+    });
+    page.once('dialog', async dialog => {
+      assert.equal(dialog.message(), '전송하시겠습니까?');
+      await dialog.accept();
+    });
+    await page.locator('.submit-button').click();
+    await page.evaluate(() => {
+      document.querySelector('.contact-form').dispatchEvent(new Event('submit', { cancelable: true }));
+    });
+    await page.waitForFunction(() => document.querySelector('.form-status').dataset.state === 'success');
+    assert.equal(submissionCount, 1);
+    assert.equal(new URL(page.url()).host, new URL(base).host);
+    assert.equal(await page.locator('.submit-button').isEnabled(), true);
+
+    for (const result of ['failure', 'network']) {
+      submissionResult = result;
+      await page.locator('input[name="name"]').fill('Keep name');
+      await page.locator('input[name="email"]').fill('test@example.com');
+      await page.locator('textarea[name="message"]').fill('Keep inquiry');
+      page.once('dialog', dialog => dialog.accept());
+      await page.locator('.submit-button').click();
+      await page.waitForFunction(() => document.querySelector('.form-status').dataset.state === 'error');
+      assert.equal(await page.locator('textarea[name="message"]').inputValue(), 'Keep inquiry');
+      assert.equal(await page.locator('input[name="name"]').inputValue(), 'Keep name');
+      assert.equal(await page.locator('.submit-button').isEnabled(), true);
+      assert.equal(new URL(page.url()).host, new URL(base).host);
+    }
     assert.deepEqual(errors, []);
-    console.log('PASS: 11 content files; counts, ordering, captions, lightbox, tabs, empty lists, fallback, path validation, mobile layout, form cancellation.');
+    console.log('PASS: photo management and mobile layout; inquiry cancellation, AJAX success, duplicate prevention, server/network failures, preserved inputs, no navigation. No real email sent.');
   } finally {
     await browser.close();
   }

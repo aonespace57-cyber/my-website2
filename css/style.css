@@ -578,6 +578,53 @@ main {
   padding-bottom: 100px;
 }
 
+.venue-services {
+  margin-bottom: 64px;
+  padding: clamp(24px, 5vw, 56px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, #fff, #eef4fb);
+}
+
+.venue-services h2 {
+  font-size: clamp(1.7rem, 3.5vw, 2.8rem);
+  line-height: 1.35;
+}
+
+.venue-intro,
+.venue-note,
+.venue-grid p {
+  color: var(--muted);
+  line-height: 1.85;
+}
+
+.venue-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 32px 0;
+}
+
+.venue-grid article {
+  padding-top: 20px;
+  border-top: 2px solid var(--accent);
+}
+
+.venue-grid h3 {
+  font-size: 1.25rem;
+}
+
+.venue-note {
+  margin-bottom: 24px;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 720px) {
+  .venue-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .contact-card {
   padding: clamp(36px, 7vw, 64px);
   border-radius: var(--radius-xl);

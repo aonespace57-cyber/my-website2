@@ -245,7 +245,7 @@
         <p class="eyebrow">Contact</p>
         <h2>프로젝트 문의</h2>
         <p>필요한 내용을 남겨주시면 확인 후 연락드릴 수 있도록 문의 폼을 준비했습니다.</p>
-        <form class="contact-form" action="https://formsubmit.co/aonespace@naver.com" method="POST">
+        <form class="contact-form" action="https://formsubmit.co/aonespace@naver.com" method="POST" enctype="multipart/form-data">
           <input type="hidden" name="_subject" value="A One Space 홈페이지 문의">
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_captcha" value="false">
@@ -272,6 +272,14 @@
 설치수량  : 
  </textarea>
           </label>
+
+          <label class="form-field">
+            <span>파일 첨부 (선택)</span>
+            <input type="file" id="inquiry-files" name="attachment" multiple accept=".pdf,.jpg,.jpeg,.png,.webp,.zip,.dwg,.dxf" aria-describedby="attachment-help attachment-summary">
+          </label>
+          <small id="attachment-help">도면·참고 이미지: PDF, JPG, PNG, WebP, ZIP, DWG, DXF / 여러 파일 합계 10MB까지</small>
+          <p id="attachment-summary" aria-live="polite"></p>
+          <button type="button" id="clear-attachments" hidden>첨부 취소</button>
 
           <button type="submit" class="button button-primary submit-button">문의 남기기</button>
           <p class="form-status" role="status" aria-live="polite" aria-atomic="true">문의 접수 결과는 이 화면에 표시됩니다.</p>
@@ -311,6 +319,7 @@
   </div>
 
   <script src="js/managed-photos.js"></script>
+  <script src="js/attachment-submit.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>

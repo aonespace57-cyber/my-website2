@@ -189,41 +189,88 @@ document.addEventListener("managedphotosupdated", () => {
 window.loadManagedPhotos();
 
 let inquirySending = false;
+const attachmentInput = document.getElementById("inquiry-files");
+const attachmentSummary = document.getElementById("attachment-summary");
+const clearAttachments = document.getElementById("clear-attachments");
+const attachmentLimit = 10000000;
+
+function validateAttachments() {
+  const files = [...(attachmentInput?.files || [])];
+  const total = files.reduce((sum, file) => sum + file.size, 0);
+  const allowed = /\.(pdf|jpe?g|png|webp|zip|dwg|dxf)$/i;
+  let error = "";
+  if (files.some(file => !allowed.test(file.name))) {
+    error = "PDF, JPG, PNG, WebP, ZIP, DWG, DXF 파일을 선택해 주세요.";
+  } else if (files.some(file => file.size === 0)) {
+    error = "내용이 없는 파일은 첨부할 수 없습니다.";
+  } else if (total > attachmentLimit) {
+    error = "첨부파일의 합계 용량은 10MB 이하여야 합니다.";
+  }
+  attachmentInput?.setCustomValidity(error);
+  if (attachmentSummary) {
+    attachmentSummary.textContent = error || (files.length
+      ? `${files.map(file => file.name).join(", ")} (${(total / 1000000).toFixed(2)}MB)` : "");
+  }
+  if (clearAttachments) clearAttachments.hidden = !files.length;
+  return !error;
+}
+
+attachmentInput?.addEventListener("change", validateAttachments);
+clearAttachments?.addEventListener("click", () => {
+  attachmentInput.value = "";
+  validateAttachments();
+});
 
 contactForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
-  if (inquirySending || !window.confirm("전송하시겠습니까?")) return;
+  if (inquirySending) return;
+  if (!validateAttachments()) {
+    contactForm.reportValidity();
+    return;
+  }
+  if (!window.confirm("전송하시겠습니까?")) return;
 
   const button = contactForm.querySelector(".submit-button");
   const status = contactForm.querySelector(".form-status");
   const originalLabel = button.textContent;
-  const payload = Object.fromEntries(new FormData(contactForm));
+  const payload = new FormData(contactForm);
+  const files = [...(attachmentInput?.files || [])];
+  payload.delete("attachment");
+  // Each file gets its own field, as required by the form service.
+  files.forEach((file, index) => payload.append(index ? `attachment${index + 1}` : "attachment", file));
   const endpoint = new URL(contactForm.action);
   endpoint.pathname = `/ajax${endpoint.pathname}`;
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 30000);
+  const timeout = setTimeout(() => controller.abort(), files.length ? 120000 : 30000);
 
   inquirySending = true;
   button.disabled = true;
+  if (attachmentInput) attachmentInput.disabled = true;
+  if (clearAttachments) clearAttachments.disabled = true;
   button.textContent = "전송 중…";
   contactForm.setAttribute("aria-busy", "true");
   status.textContent = "문의 내용을 전송하고 있습니다.";
   status.dataset.state = "sending";
 
   try {
-    const response = await fetch(endpoint.href, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify(payload),
-      signal: controller.signal,
-    });
-    const result = await response.json();
-    if (!response.ok || !(result.success === true || result.success === "true")) {
-      throw new Error("Inquiry was not accepted");
+    if (files.length) {
+      await window.submitInquiryAttachments(contactForm.action, payload, controller.signal);
+    } else {
+      const response = await fetch(endpoint.href, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: payload,
+        signal: controller.signal,
+      });
+      const result = await response.json();
+      if (!response.ok || !(result.success === true || result.success === "true")) {
+        throw new Error("Inquiry was not accepted");
+      }
     }
     status.textContent = "문의가 접수되었습니다. 확인 후 연락드리겠습니다.";
     status.dataset.state = "success";
     contactForm.reset();
+    validateAttachments();
   } catch (error) {
     status.textContent = error.name === "AbortError"
       ? "전송 결과를 확인하지 못했습니다. 잠시 후 다시 시도하거나 aonespace@naver.com으로 연락해 주세요."
@@ -233,6 +280,8 @@ contactForm?.addEventListener("submit", async (event) => {
     clearTimeout(timeout);
     inquirySending = false;
     button.disabled = false;
+    if (attachmentInput) attachmentInput.disabled = false;
+    if (clearAttachments) clearAttachments.disabled = false;
     button.textContent = originalLabel;
     contactForm.removeAttribute("aria-busy");
   }

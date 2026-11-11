@@ -100,12 +100,36 @@ const server = http.createServer((req, res) => {
 
     let submissionCount = 0;
     let submissionResult = 'success';
+    let expectedAttachments = [];
     await page.route('https://formsubmit.co/**', async route => {
       submissionCount++;
-      assert.equal(route.request().url(), 'https://formsubmit.co/ajax/aonespace@naver.com');
-      assert.equal(route.request().postDataJSON()._captcha, 'false');
+      assert.equal(route.request().url(), expectedAttachments.length
+        ? 'https://formsubmit.co/aonespace@naver.com'
+        : 'https://formsubmit.co/ajax/aonespace@naver.com');
+      const request = route.request();
+      const data = await new Response(request.postDataBuffer(), {
+        headers: { 'Content-Type': request.headers()['content-type'] },
+      }).formData();
+      assert.equal(data.get('_captcha'), 'false');
+      const attachments = [...data.entries()].filter(([key]) => key.startsWith('attachment'));
+      assert.equal(attachments.length, expectedAttachments.length);
+      for (let index = 0; index < expectedAttachments.length; index++) {
+        const file = data.get(index ? `attachment${index + 1}` : 'attachment');
+        assert.equal(file.name, expectedAttachments[index].name);
+        assert.deepEqual(Buffer.from(await file.arrayBuffer()), expectedAttachments[index].buffer);
+      }
       await new Promise(resolve => setTimeout(resolve, 200));
       if (submissionResult === 'network') return route.abort();
+      if (expectedAttachments.length) {
+        if (submissionResult !== 'success') return route.fulfill({ status: 500, body: 'Test error' });
+        const callback = data.get('_next');
+        assert.equal(new URL(callback).origin, base);
+        assert.equal(new URL(callback).pathname, '/inquiry-complete.html');
+        // A page outside the submission iframe cannot spoof success.
+        await page.evaluate(() => window.postMessage({ type: 'inquiry-complete' }, location.origin));
+        assert.equal(await page.locator('.form-status').getAttribute('data-state'), 'sending');
+        return route.fulfill({ status: 302, headers: { location: callback } });
+      }
       return route.fulfill({ json: { success: submissionResult === 'success' ? 'true' : 'false' } });
     });
     page.once('dialog', async dialog => {
@@ -121,21 +145,48 @@ const server = http.createServer((req, res) => {
     assert.equal(new URL(page.url()).host, new URL(base).host);
     assert.equal(await page.locator('.submit-button').isEnabled(), true);
 
+    const fileInput = page.locator('#inquiry-files');
+    await fileInput.setInputFiles({ name: 'too-large.pdf', mimeType: 'application/pdf', buffer: Buffer.alloc(10000001) });
+    assert.equal(await fileInput.evaluate(node => node.checkValidity()), false);
+    await page.locator('#clear-attachments').click();
+    assert.equal(await fileInput.evaluate(node => node.checkValidity()), true);
+    await fileInput.setInputFiles({ name: 'blocked.exe', mimeType: 'application/octet-stream', buffer: Buffer.from('test') });
+    assert.equal(await fileInput.evaluate(node => node.checkValidity()), false);
+    expectedAttachments = [
+      { name: 'drawing.pdf', mimeType: 'application/pdf', buffer: Buffer.from('%PDF-1.4 test') },
+      { name: 'reference.png', mimeType: 'image/png', buffer: Buffer.from([137, 80, 78, 71, 0, 255]) },
+    ];
+    await fileInput.setInputFiles(expectedAttachments);
+    await page.locator('input[name="name"]').fill('Attachment test');
+    await page.locator('input[name="email"]').fill('test@example.com');
+    page.once('dialog', dialog => dialog.accept());
+    await page.locator('.submit-button').click();
+    await page.waitForFunction(() => document.querySelector('.form-status').dataset.state === 'success');
+    assert.equal(await fileInput.evaluate(node => node.files.length), 0);
+    assert.equal(await page.locator('#attachment-summary').innerText(), '');
+
+    await page.clock.install();
     for (const result of ['failure', 'network']) {
       submissionResult = result;
+      await fileInput.setInputFiles(expectedAttachments);
       await page.locator('input[name="name"]').fill('Keep name');
       await page.locator('input[name="email"]').fill('test@example.com');
       await page.locator('textarea[name="message"]').fill('Keep inquiry');
       page.once('dialog', dialog => dialog.accept());
       await page.locator('.submit-button').click();
+      await page.waitForTimeout(500);
+      assert.equal(await page.locator('.form-status').getAttribute('data-state'), 'sending');
+      await page.clock.fastForward(120001);
       await page.waitForFunction(() => document.querySelector('.form-status').dataset.state === 'error');
       assert.equal(await page.locator('textarea[name="message"]').inputValue(), 'Keep inquiry');
       assert.equal(await page.locator('input[name="name"]').inputValue(), 'Keep name');
+      assert.equal(await fileInput.evaluate(node => node.files.length), 2);
       assert.equal(await page.locator('.submit-button').isEnabled(), true);
       assert.equal(new URL(page.url()).host, new URL(base).host);
+      assert.equal(await page.locator('iframe[name^="inquiry-"]').count(), 0);
     }
     assert.deepEqual(errors, []);
-    console.log('PASS: photo management and mobile layout; inquiry cancellation, AJAX success, duplicate prevention, server/network failures, preserved inputs, no navigation. No real email sent.');
+    console.log('PASS: photo management and mobile layout; inquiry cancellation, multipart file bytes, multiple files, size/type limits, AJAX success, duplicate prevention, server/network failures, preserved inputs and attachments, no navigation. No real email sent.');
   } finally {
     await browser.close();
   }

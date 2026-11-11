@@ -689,6 +689,28 @@ main {
   margin-top: 10px;
 }
 
+#attachment-help {
+  display: block;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.contact-card #attachment-summary {
+  margin: 8px 0;
+  overflow-wrap: anywhere;
+  font-size: 0.9rem;
+}
+
+#clear-attachments {
+  margin: 0 12px 8px 0;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  color: var(--text);
+  cursor: pointer;
+}
+
 .submit-button:disabled {
   opacity: 0.65;
   cursor: wait;
